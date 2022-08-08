@@ -1,0 +1,35 @@
+#trash {
+    color: rgb(206, 0, 0);
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+}
+
+.changeName {
+    margin: 2%;
+    position: relative;
+}
+
+#changeName {
+    display: inline;
+}
+
+#toDoNameChange {
+    display: inline;
+    width: 45%;
+}
+
+textarea {
+    resize: none;
+}
+
+#textField {
+    margin: 2%;
+    position: relative;
+    height: 60%;
+}
+
+#textArea {
+    width: 98%;
+    height: 80%;
+}

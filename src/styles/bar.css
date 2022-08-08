@@ -1,0 +1,37 @@
+#highBar {
+    position: relative;
+    height: 5%;
+    padding: 1%;
+}
+
+#addToDo {
+    float: right;
+    width: 30%;
+    min-height: 40px;
+    border-radius: 7px;
+    border: none;
+    outline: none;
+    margin-top: 3px;
+    background: rgb(184, 228, 212);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    color: black;
+}
+
+#search {
+    display: inline;
+    margin-left: 10px;
+}
+
+#searchName {
+    display: inline;
+}
+
+#blockSearch {
+    float: left;
+    margin-top: 15px;
+}
+
+#addToDo:hover {
+    background: rgb(131, 161, 150);
+    box-shadow: none;
+}

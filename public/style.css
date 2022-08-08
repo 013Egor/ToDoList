@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+
+body {
+    background-image: linear-gradient(rgb(216, 184, 114),rgb(255, 227, 168));
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    font-family: "Comfortaa", cursive;
+}
+
+button {
+    font-family: "Comfortaa", bold;
+    font-size: medium;
+    font-weight: bolder;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+}
+
+#root {
+    width: 95%;
+    height: 100vh;
+}
+
+
+#highBar {
+    background-color: rgb(245, 255, 252);
+    margin-bottom: 5px;
+    border-radius: 7px;
+    min-height: 45px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+#toDoPanel {
+    height: 70%;
+}
+
+#toDoDescribe {
+    background-color: rgb(184, 228, 212);
+    float: right;
+    width: 70%;
+    height: 90%;
+    border-radius: 0px 7px 7px 0px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+#toDoList {
+    background-color: rgb(206, 223, 217);
+    border-radius: 7px 0px 0px 7px;
+    float: left;
+    width: 30%;
+    height: 90%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
