@@ -65,3 +65,8 @@
     background-color:rgba(0, 0, 0, 0.384);
     border-radius: 3px;
 }
+
+.toDoName:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

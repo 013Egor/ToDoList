@@ -7,6 +7,7 @@ class ToDoItems extends React.Component {
         
         this.handleBackTask = this.handleBackTask.bind(this);
         this.handleBeginTask = this.handleBeginTask.bind(this);
+        this.handleCurrentRecord = this.handleCurrentRecord.bind(this);
     }
 
     handleBackTask(e, id, status) {
@@ -28,6 +29,10 @@ class ToDoItems extends React.Component {
         this.props.handleTask(id, nextStatus);
     }
 
+    handleCurrentRecord(event, item) {
+        this.props.handleCurrentRecord(item.name, item.description, item.id);
+    }
+
     render() {
 
         return (
@@ -37,7 +42,7 @@ class ToDoItems extends React.Component {
                   return (
                     <div key={d.id} className={"toDoItem " + d.status} id={`toDoName${d.id}`}>
                         <i class="fa-solid fa-ellipsis-vertical dots"></i>
-                        <p className="toDoName" >{d.name}</p>
+                        <p className="toDoName" onClick={(event) => this.handleCurrentRecord(event, d)}>{d.name}</p>
                         <div className="itemButtons">
                                 <i className="fa-solid fa-play takeTodo" id={`begin${d.id}`} onClick={event => this.handleBeginTask(event, d.id, d.status)}></i>
                                 <i class="fa-solid fa-rotate-left backToDo" id={`back${d.id}`} onClick={event => this.handleBackTask(event, d.id, d.status)}></i>

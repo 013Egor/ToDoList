@@ -23,6 +23,7 @@ class App extends React.Component {
         this.handleAddButton = this.handleAddButton.bind(this);
         this.closeToDoForm = this.closeToDoForm.bind(this);
         this.openToDoForm = this.openToDoForm.bind(this);
+        this.handleChangeRecord = this.handleChangeRecord.bind(this);
     }
 
     onCompleteTask(id, status) {
@@ -56,14 +57,27 @@ class App extends React.Component {
         this.setState({modalFormShow: true});
     }
 
-    render() {
+    handleChangeRecord(item) {
+        var tempList = this.state.toDoRecords;
+        tempList.forEach((el) => {
+            
+            if (el.id === item.id) {
+                el.name = item.name;
+                el.description = item.description;
+            }
+        });
+        
+        this.setState({toDoRecords: tempList});
+    }
 
+    render() {
+        
         return (
             <div id="container">
                 <h1>To Do list</h1>
                 
                 <Bar openToDoForm={this.openToDoForm} />
-                <MainView records={this.state.toDoRecords} onCompleteTask={this.onCompleteTask} />
+                <MainView records={this.state.toDoRecords} onCompleteTask={this.onCompleteTask} handleChangeRecord={this.handleChangeRecord} />
                 <Modal show={this.state.modalFormShow} handleClose={this.closeToDoForm} handleAddButton={this.handleAddButton}/>
             </div>
         );
