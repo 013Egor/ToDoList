@@ -2,22 +2,20 @@ import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
 import React from "react";
 
 var BORDER_SIZE = 4;
-var m_pos;
+var prevX;
 
 function resize(e) {
         
     var left = document.getElementById("toDoList");
     var block = document.getElementById("toDoPanel");
     var right = document.getElementById("toDoDescribe");
-  const dx = e.x - m_pos;
-  console.log(e.x + " - " + m_pos + " = " + dx);
-  m_pos = e.x;
-  
-  
-  let leftSize = (parseInt(getComputedStyle(left, '').width) + dx); 
-  let blockSize = parseInt(getComputedStyle(block, '').width); 
-  left.style.width = leftSize + "px";
-  right.style.width = (blockSize - leftSize) + "px";
+    const dx = e.x - prevX;
+    prevX = e.x;
+    
+    let leftSize = (parseInt(getComputedStyle(left, '').width) + dx); 
+    let blockSize = parseInt(getComputedStyle(block, '').width); 
+    left.style.width = leftSize + "px";
+    right.style.width = (blockSize - leftSize) + "px";
 }
 
 class ToDoItems extends React.Component {
@@ -27,14 +25,9 @@ class ToDoItems extends React.Component {
         this.handleBackTask = this.handleBackTask.bind(this);
         this.handleBeginTask = this.handleBeginTask.bind(this);
         this.handleCurrentRecord = this.handleCurrentRecord.bind(this);
-        this.h = this.h.bind(this);
         this.addListener = this.addListener.bind(this);
-        this.removeListener = this.removeListener.bind(this);
     }
 
-    h() {
-        console.log(":)");
-    }
     handleBackTask(e, id, status) {
         var nextStatus = status == "finished" ? "process" : "wait";
         document.getElementById(`begin${id}`).style.display = "inline";
@@ -63,7 +56,7 @@ class ToDoItems extends React.Component {
 
         center.addEventListener("mousedown", function(e) {
           if (e.offsetX < BORDER_SIZE) {
-            m_pos = e.x;
+            prevX = e.x;
             document.addEventListener("mousemove", resize, false);
           }
         }, false);
@@ -71,10 +64,6 @@ class ToDoItems extends React.Component {
         document.addEventListener("mouseup", function() {
             document.removeEventListener("mousemove", resize, false);
         }, false);
-    }
-
-    removeListener() {
-        
     }
 
     render() {
@@ -94,7 +83,7 @@ class ToDoItems extends React.Component {
                         </div>)
                     })}
                 </div>
-                <div onMouseDownCapture={this.addListener} onMouseUp={this.removeListener} id="moveBar"></div>
+                <div onMouseDownCapture={this.addListener} id="moveBar"></div>
             </div>
         );
     }

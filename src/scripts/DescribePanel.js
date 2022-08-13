@@ -12,19 +12,25 @@ class DescribePanel extends React.Component {
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
+
     handleChangeDescription(event) {
         this.setState({cur: {name: this.state.cur.name, description: event.target.value, id: this.state.cur.id}});
     }
+
     handleChangeName(event) {
         this.setState({cur: {name: event.target.value, description: this.state.cur.description, id: this.state.cur.id}});
     }
+
     handleDelete() {
         this.props.deleteRecord(this.state.cur.id);
         document.getElementById("toDoDescribe").style.display = "none";
         var listPanel = document.getElementById("toDoList");
+        var moveBar = document.getElementById("moveBar");
         listPanel.style.width = "100%";
         listPanel.style.borderRadius = "7px 7px 7px 7px";
+        moveBar.style.display = "none";
     }
+
     handleSave() {
         this.props.handleChangeRecord(this.state.cur);
     }
@@ -39,6 +45,7 @@ class DescribePanel extends React.Component {
 
         return null;
     }
+    
     render () {
         
         return (
