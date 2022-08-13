@@ -25,8 +25,10 @@ class DescribePanel extends React.Component {
         this.props.deleteRecord(this.state.cur.id);
         document.getElementById("toDoDescribe").style.display = "none";
         var listPanel = document.getElementById("toDoList");
+        var moveBar = document.getElementById("moveBar");
         listPanel.style.width = "100%";
         listPanel.style.borderRadius = "7px 7px 7px 7px";
+        moveBar.style.display = "none";
     }
 
     handleSave() {
