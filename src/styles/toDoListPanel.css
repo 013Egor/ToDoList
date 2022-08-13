@@ -1,9 +1,14 @@
 .toDoName {
     display: inline;
+    width: 40%;
     position: absolute;
     top: -5px;
     margin-left: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
+
 
 .itemButtons {
     display: inline;
@@ -17,7 +22,7 @@
 .toDoItem {
     position: relative;
     box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-    margin: 2%;
+    margin: 10px 40px 10px 10px;
     height: 40px;
     width: 96%;
     border-radius: 5px;
@@ -69,4 +74,28 @@
 .toDoName:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+#trash:hover {
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    color: red;
+}
+
+#moveBar {
+    background-color: rgb(111, 134, 126);
+    position: absolute;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    cursor: ew-resize;
+    display: none;
+}
+
+#content {
+    display: inline;
+    width: 100%;
+    margin-right: 4px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

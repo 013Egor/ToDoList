@@ -19,7 +19,11 @@ class DescribePanel extends React.Component {
         this.setState({cur: {name: event.target.value, description: this.state.cur.description, id: this.state.cur.id}});
     }
     handleDelete() {
-        
+        this.props.deleteRecord(this.state.cur.id);
+        document.getElementById("toDoDescribe").style.display = "none";
+        var listPanel = document.getElementById("toDoList");
+        listPanel.style.width = "100%";
+        listPanel.style.borderRadius = "7px 7px 7px 7px";
     }
     handleSave() {
         this.props.handleChangeRecord(this.state.cur);
@@ -42,7 +46,7 @@ class DescribePanel extends React.Component {
                 <div className="changeName">
                     <p id="changeName">Название: </p>
                     <input type="text" id="toDoNameChange" value={this.state.cur.name} onChange={this.handleChangeName} />
-                    <i className="fa-solid fa-trash-can" id="trash"></i>
+                    <i className="fa-solid fa-trash-can" id="trash" onClick={this.handleDelete}></i>
                 </div>
                 <div id="textField">
                     <p id="describeName">Описание:</p>

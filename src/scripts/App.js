@@ -24,6 +24,7 @@ class App extends React.Component {
         this.closeToDoForm = this.closeToDoForm.bind(this);
         this.openToDoForm = this.openToDoForm.bind(this);
         this.handleChangeRecord = this.handleChangeRecord.bind(this);
+        this.deleteRecord = this.deleteRecord.bind(this);
     }
 
     onCompleteTask(id, status) {
@@ -70,6 +71,18 @@ class App extends React.Component {
         this.setState({toDoRecords: tempList});
     }
 
+
+    deleteRecord(id) {
+        var temp = this.state.toDoRecords;
+        for(var i = 0; i < temp.length; i++) {
+            if (temp[i].id === id) {
+                let t = temp.splice(i, 1)
+                break;
+            } 
+        }
+        this.setState({toDoRecords: temp});
+    }
+
     render() {
         
         return (
@@ -77,7 +90,7 @@ class App extends React.Component {
                 <h1>To Do list</h1>
                 
                 <Bar openToDoForm={this.openToDoForm} />
-                <MainView records={this.state.toDoRecords} onCompleteTask={this.onCompleteTask} handleChangeRecord={this.handleChangeRecord} />
+                <MainView records={this.state.toDoRecords} onCompleteTask={this.onCompleteTask} handleChangeRecord={this.handleChangeRecord} deleteRecord={this.deleteRecord}/>
                 <Modal show={this.state.modalFormShow} handleClose={this.closeToDoForm} handleAddButton={this.handleAddButton}/>
             </div>
         );
