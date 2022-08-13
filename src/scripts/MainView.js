@@ -31,7 +31,7 @@ class MainView extends React.Component {
             moveBar.style.display = "inline";
             listPanel.style.width = "30%";
             listPanel.style.borderRadius = "7px 0px 0px 7px";
-
+            describePanel.style.width = "70%";
         }
         
         this.setState({cur: {name: name, description: description, id: id}});
