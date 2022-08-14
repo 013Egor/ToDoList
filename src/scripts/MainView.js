@@ -14,7 +14,7 @@ class MainView extends React.Component {
         }
         this.handleCurrentRecord = this.handleCurrentRecord.bind(this);
         this.onChangeRecord = this.onChangeRecord.bind(this);
-        this.temp = this.temp.bind(this);
+        this.onDeleteRecord = this.onDeleteRecord.bind(this);
     }
 
     handleCurrentRecord(name, description, id) {
@@ -37,13 +37,15 @@ class MainView extends React.Component {
     }
 
     onChangeRecord(item) {
-        console.log("dfdf");
         this.props.handleChangeRecord(item);
     }
 
-    temp(event) {
-        console.log("hello" + event.x);
-        
+    onDeleteRecord(id) {
+        this.props.deleteRecord(id);
+        this.setState({
+            describePanel: false, 
+            cur: {name: "", description: "", id: undefined}
+        })
     }
 
     render() {
@@ -53,7 +55,7 @@ class MainView extends React.Component {
 
                 <ToDoItems filterText={this.props.filterText} item={this.props.records} handleTask={this.props.onCompleteTask} handleCurrentRecord={this.handleCurrentRecord} />
                 
-                <DescribePanel item={this.state.cur} handleChangeRecord={this.props.handleChangeRecord} deleteRecord={this.props.deleteRecord} />
+                <DescribePanel item={this.state.cur} handleChangeRecord={this.props.handleChangeRecord} deleteRecord={this.onDeleteRecord} />
             </div>
         );
     }
