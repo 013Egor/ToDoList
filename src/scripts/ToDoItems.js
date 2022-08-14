@@ -72,15 +72,20 @@ class ToDoItems extends React.Component {
             <div id="toDoList">
                 <div id="content">
                     {this.props.item.map(d => {
-                      return (
-                        <div key={d.id} className={"toDoItem " + d.status} id={`toDoName${d.id}`}>
-                            <i class="fa-solid fa-ellipsis-vertical dots"></i>
-                            <p className="toDoName" onClick={(event) => this.handleCurrentRecord(event, d)}>{d.name}</p>
-                            <div className="itemButtons">
-                                    <i className="fa-solid fa-play takeTodo" id={`begin${d.id}`} onClick={event => this.handleBeginTask(event, d.id, d.status)}></i>
-                                    <i class="fa-solid fa-rotate-left backToDo" id={`back${d.id}`} onClick={event => this.handleBackTask(event, d.id, d.status)}></i>
-                            </div>
-                        </div>)
+                        if (d.name.indexOf(this.props.filterText) === -1) {
+                            return
+                        } else {
+                            return (
+                                <div key={d.id} className={"toDoItem " + d.status} id={`toDoName${d.id}`}>
+                                    <i class="fa-solid fa-ellipsis-vertical dots"></i>
+                                    <p className="toDoName" onClick={(event) => this.handleCurrentRecord(event, d)}>{d.name}</p>
+                                    <div className="itemButtons">
+                                            <i className="fa-solid fa-play takeTodo" id={`begin${d.id}`} onClick={event => this.handleBeginTask(event, d.id, d.status)}></i>
+                                            <i class="fa-solid fa-rotate-left backToDo" id={`back${d.id}`} onClick={event => this.handleBackTask(event, d.id, d.status)}></i>
+                                    </div>
+                                </div>)
+                        }
+                      
                     })}
                 </div>
                 <div onMouseDownCapture={this.addListener} id="moveBar"></div>

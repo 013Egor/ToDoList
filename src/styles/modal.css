@@ -12,6 +12,8 @@
   background: white;
   width: 55%;
   height: 60%;
+  min-width: 400px;
+  min-height: 400px;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);

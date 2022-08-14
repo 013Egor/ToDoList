@@ -36,7 +36,7 @@ class DescribePanel extends React.Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-
+        console.log("dsf");
         if (state.cur.id !== props.item.id) {
             return {
                 cur: props.item
@@ -59,7 +59,7 @@ class DescribePanel extends React.Component {
                     <p id="describeName">Описание:</p>
                     <textarea name="" id="textArea" cols="30" rows="10" value={this.state.cur.description} onChange={this.handleChangeDescription}></textarea>
                 </div>
-                <button type="button" onClick={this.handleSave} >Сохранить</button>
+                <button type="button" id="saveChange" onClick={this.handleSave} >Сохранить</button>
             </div>
         );
     }

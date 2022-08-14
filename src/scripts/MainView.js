@@ -9,7 +9,8 @@ class MainView extends React.Component {
         super(props);
 
         this.state = {
-            cur: {name: "", description: "", id: undefined}
+            cur: {name: "", description: "", id: undefined},
+            describePanel: false
         }
         this.handleCurrentRecord = this.handleCurrentRecord.bind(this);
         this.onChangeRecord = this.onChangeRecord.bind(this);
@@ -21,23 +22,22 @@ class MainView extends React.Component {
         var listPanel = document.getElementById("toDoList");
         var moveBar = document.getElementById("moveBar");
 
-        if (this.state.cur.id === id) {
-            describePanel.style.display = describePanel.style.display == "inline" ? "none" : "inline"; 
-            moveBar.style.display = moveBar.style.display == "inline" ? "none" : "inline";
-            listPanel.style.width = listPanel.style.width == "30%" ? "100%" : "30%"; 
-            listPanel.style.borderRadius = listPanel.style.borderRadius == "7px 0px 0px 7px" ? "7px 7px 7px 7px" : "7px 0px 0px 7px";
-        } else {
-            describePanel.style.display = "inline";
-            moveBar.style.display = "inline";
-            listPanel.style.width = "30%";
-            listPanel.style.borderRadius = "7px 0px 0px 7px";
-            describePanel.style.width = "70%";
+        describePanel.style.display = this.state.describePanel ? "none" : "inline"; 
+        moveBar.style.display = this.state.describePanel ? "none" : "inline";
+        listPanel.style.width = this.state.describePanel ? "100%" : "30%"; 
+        listPanel.style.borderRadius = this.state.describePanel ? "7px 7px 7px 7px" : "7px 0px 0px 7px";
+        describePanel.style.width = "70%";
+
+        if (id === this.state.cur.id || this.state.id === undefined) {
+            var value = this.state.describePanel ? false : true;
+            this.setState({describePanel: value});
         }
-        
+
         this.setState({cur: {name: name, description: description, id: id}});
     }
 
     onChangeRecord(item) {
+        console.log("dfdf");
         this.props.handleChangeRecord(item);
     }
 
@@ -51,7 +51,7 @@ class MainView extends React.Component {
         return (
             <div onMouseDownCapture={this.temp} id="toDoPanel">
 
-                <ToDoItems  item={this.props.records} handleTask={this.props.onCompleteTask} handleCurrentRecord={this.handleCurrentRecord} />
+                <ToDoItems filterText={this.props.filterText} item={this.props.records} handleTask={this.props.onCompleteTask} handleCurrentRecord={this.handleCurrentRecord} />
                 
                 <DescribePanel item={this.state.cur} handleChangeRecord={this.props.handleChangeRecord} deleteRecord={this.props.deleteRecord} />
             </div>

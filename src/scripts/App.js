@@ -16,7 +16,8 @@ class App extends React.Component {
 
         this.state = {
             toDoRecords: [],
-            modalFormShow: false
+            modalFormShow: false,
+            filterText: ""
         }
 
         this.onCompleteTask = this.onCompleteTask.bind(this);
@@ -25,6 +26,7 @@ class App extends React.Component {
         this.openToDoForm = this.openToDoForm.bind(this);
         this.handleChangeRecord = this.handleChangeRecord.bind(this);
         this.deleteRecord = this.deleteRecord.bind(this);
+        this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     }
 
     onCompleteTask(id, status) {
@@ -83,14 +85,20 @@ class App extends React.Component {
         this.setState({toDoRecords: temp});
     }
 
+    handleFilterTextChange(filterText) {
+      this.setState({
+        filterText: filterText
+      });
+    }
+
     render() {
         
         return (
             <div id="container">
                 <h1>To Do list</h1>
                 
-                <Bar openToDoForm={this.openToDoForm} />
-                <MainView records={this.state.toDoRecords} onCompleteTask={this.onCompleteTask} handleChangeRecord={this.handleChangeRecord} deleteRecord={this.deleteRecord}/>
+                <Bar openToDoForm={this.openToDoForm} filterText={this.state.filterText} onFilterTextChange={this.handleFilterTextChange}/>
+                <MainView filterText={this.state.filterText} records={this.state.toDoRecords} onCompleteTask={this.onCompleteTask} handleChangeRecord={this.handleChangeRecord} deleteRecord={this.deleteRecord}/>
                 <Modal show={this.state.modalFormShow} handleClose={this.closeToDoForm} handleAddButton={this.handleAddButton}/>
             </div>
         );
